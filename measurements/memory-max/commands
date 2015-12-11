@@ -1,0 +1,53 @@
+#!/bin/bash
+
+portNr='8000'
+containerName='exampleode-embedded'
+echo $$
+#measurement:
+containerId=$(sudo docker run --detach=true --publish=$portNr:8080 $containerName)
+echo $containerId
+$(sudo echo $$ >> /sys/fs/cgroup/memory/docker/$containerId/tasks)
+$(sudo echo "$$" >> /sys/fs/cgroup/memory/docker/$containerId/tasks)
+#sleep 3
+
+response=$(./bin-sendsoap/sendsoap http://localhost:$portNr/ode/processes/helloWorld ./examples/HelloWorld2/testRequest.soap 2>/dev/null | grep --count helloResponse )
+
+while [ "$response" != "1" ]; do
+response=$(./bin-sendsoap/sendsoap http://localhost:$portNr/ode/processes/helloWorld ./examples/HelloWorld2/testRequest.soap 2>/dev/null | grep --count helloResponse )
+done
+
+sudo docker stop $containerId
+
+sleep 10
+# wait for cgroup-tasks file only containing own PiD
+tasks=$(cat /sys/fs/cgroup/memory/docker/$containerId/tasks)
+
+finished=$(echo $tasks | tr " " "\n" | grep --invert-match --count $$)
+echo $finished
+echo $tasks | tr " " "\n"
+
+#finished='1'
+while [ "$finished" != "1" ]; do # should be null but there is always another number while watching file
+sleep 3
+tasks=$(cat /sys/fs/cgroup/memory/docker/$containerId/tasks)
+finished=$(echo $tasks | tr " " "\n" | grep --invert-match --count $$)
+echo $finished
+echo $tasks | tr " " "\n"
+done
+
+
+
+# read measurement
+cat /sys/fs/cgroup/memory/docker/$containerId/memory.stat
+# delete cgroup
+rmdir /sys/fs/cgroup/memory/docker/$containerId
+
+echo $($measurement | tr " " "\n")
+
+--------------------------------------------------------------------------------
+
+https://web.archive.org/web/20101124103342/http://kdedevelopers.org/node/4040
+http://unix.stackexchange.com/questions/151510/find-out-the-memory-allocated-for-a-particular-process-in-ubuntu
+ 
+
+sudo docker ps -as

@@ -1,0 +1,18 @@
+REPOSITORY                         TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+exampleode-tomcatembedded-alpine   latest              c084479a416a        6 hours ago         309.5 MB
+ode-tomcatembedded-alpine          latest              20830cc078ee        6 hours ago         309.5 MB
+tomcatembedded-alpine              latest              4a6b789a2c9e        6 hours ago         261.2 MB
+exampleode-alpine                  latest              b14c25fa0749        6 hours ago         317.5 MB
+ode-alpine                         latest              b30d22ec2a8c        6 hours ago         317.5 MB
+tomcat-alpine                      latest              4a88f3ba24df        6 hours ago         269.2 MB
+exampleode-embedded-alpine         latest              6baf8ec27fea        6 hours ago         311.5 MB
+ode-embedded-alpine                latest              4227a8997693        6 hours ago         311.4 MB
+jre-alpine                         latest              978e729b58dc        6 hours ago         255.8 MB
+exampleode                         latest              45088ac5c91f        6 hours ago         499.5 MB
+ode                                latest              ce58602db5d3        6 hours ago         499.5 MB
+tomcat                             latest              40b3fa451513        6 hours ago         451.2 MB
+exampleode-embedded                latest              82a3aee04b08        6 hours ago         493.4 MB
+ode-embedded                       latest              c535e578d533        6 hours ago         493.4 MB
+jre-headless                       latest              1ebf9658ad25        6 hours ago         437.8 MB
+ubuntu                             trusty              89d5d8e8bafb        11 hours ago        187.9 MB
+alpine                             3.2                 8a648f689ddb        12 weeks ago        5.249 MB

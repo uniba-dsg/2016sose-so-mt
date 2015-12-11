@@ -1,0 +1,7 @@
+measurementfiles/
+averagefiles/
+allStrategiesfiles/
+completeMeasurementfiles/
+*.png
+measurementResults/values.dat
+*~
